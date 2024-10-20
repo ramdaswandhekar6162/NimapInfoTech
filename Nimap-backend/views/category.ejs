@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Master</title>
+
+    <style>
+        .action {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <h1>Categories</h1>
+
+    <h3>Add Categories</h3>
+
+    <form action="/categories/add" method="post">
+        <label for="category">Enter Category Name</label>
+        <input type="text" name="name" placeholder="Enter Category Name here">
+        <button type="submit">Add Category</button>
+
+    </form>
+
+
+    <hr>
+    <ul>
+        <% categories.forEach(category => { %>
+            <li>
+                <%= category.name %>
+            </li>
+        <% }) %>
+    </ul>
+
+    <table>
+        <tr>
+            <th>Category Id</th>
+            <th>Category Name</th>
+            <th>Action On Category</th>
+        </tr>
+        
+        <% categories.forEach(category => { %>
+            <div class="action"></div>
+            <tr>
+            <th> <%= category.id %> </th>
+            <th> <%= category.name %></th>
+            <th class="action" style="display: flex; flex-direction: row;"> 
+                
+                <a href="/categories/update?id=<%=category.id %>"><Button type="submit">Update</Button></a>
+                
+                <form action="/categories/delete" method="post">
+                    <input type="hidden" value="<%=category.id %>" name="id">
+                    <button>Delete</button>
+                </form>
+
+            </th>
+            </tr>
+        </div>
+         <% }) %>
+       
+
+    </table>
+
+
+</body>
+</html>

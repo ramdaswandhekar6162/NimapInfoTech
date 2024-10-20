@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product </title>
+</head>
+<body>
+
+    <form action="/products/edit" method="post">
+        <label for="productName">Enter Product Name</label>
+        <input type="hidden" value="<%= product.id %>" name="productId">
+        <input type="text" name="productName" placeholder="<%=product.name%>" value="<%= product.name %>" />
+        <select name="categoryId" >
+            <% categories.forEach(category => { %>
+                <p><%= category.id %></p>
+                <p><%= product.categoryId %></p>
+                <% if(category.id == product.categoryId){ %>
+                    <option value="<%=category.id %>" selected><%= category.name %></option>
+                <% } else { %>
+                <option value="<%=category.id %>"><%= category.name %></option>
+                <%}%>
+            <% }) %>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    
+</body>
+</html>

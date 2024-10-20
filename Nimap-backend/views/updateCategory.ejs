@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Category</title>
+</head>
+<body>
+    <p><%= category.id %></p>
+
+    <form action="/categories/update?id=<%= category.id %>" method="post">
+
+        <label for="catName">Category Name</label>
+        <input type="text" name="name" placeholder="enter category name her">
+        <br>
+        <button type="submit">Update Category</button>
+    </form>
+    
+</body>
+</html>

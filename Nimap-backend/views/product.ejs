@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Master</title>
+</head>
+<body>
+    <h1>Products</h1>
+  <form action="/products/add" method="POST">
+    <input type="text" name="name" placeholder="Product Name" required />
+    <select name="categoryId" required>
+      <% categories.forEach(category => { %>
+        <option value="<%= category.id %>"><%= category.name %></option>
+      <% }) %>
+    </select>
+    <button type="submit">Add Product</button>
+  </form>
+
+    <table>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Category Name</th>
+            <th>Actions</th>
+        </tr>
+        
+        <% products.forEach( product => { %>
+            <tr>
+                <td> <%= product.id %></td>
+                <td> <%= product.name %> </td>
+                <td> <%= product.category.name %></td>
+                <td style="display: flex; flex-direction: row;">
+                    <a href="/products/edit?id=<%=product.id %>"><button>Edit</button></a>
+                    <form action="/products/delete" method="post">
+                        <input type="hidden" value="<%=product.id%>" name="id">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+
+        <% }) ; %>
+    </table>
+
+    <div>
+    <% if(page > 1 ) { %>
+
+        <a href="?page=<%= page -1  %>">Previous</a>
+
+    <% } %> 
+
+    <% if (page < totalPages) { %>
+        <a href="?page=<%= page + 1 %>">Next</a>
+      <% } %>
+        </div>
+    
+</body>
+</html>
